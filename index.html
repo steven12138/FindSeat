@@ -30,8 +30,12 @@
                     <div class="card-body">
                         <el-image style="width: 410px; height: 200px"
                             src="http://files.eduuu.com/img/2010/08/30/154138_4c7b60b2d5394.jpg" fit="cover"></el-image>
-                        <el-input style="width:410px;margin-top:10px;" placeholder="请输入学号" v-model="uid" clearable>
-                        </el-input>
+                        <div style="width:410px;text-align:center;">
+                            <span style="font-size:18px;">学号: </span>
+                            <el-input autofocus="true" style="width:350px;margin-top:10px;" placeholder="请输入学号" v-model="uid"
+                                clearable>
+                            </el-input>
+                        </div>
                         <el-button type="success" @click="search_data" class="submit" style="margin-top:10px;">
                             查询我的位置
                         </el-button>

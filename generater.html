@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>礼堂座位号查询</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/generater.css">
+</head>
+
+<body>
+    <canvas id="cvs" style="display:none"></canvas>
+    <div id="app">
+        <el-container>
+            <el-header class="header-bar">
+                <div class="real-header-bar">
+                    <span id="title">礼堂座位号查询</span>
+                    <div>
+                        <!-- <el-button type="success" id="adg" @click="add_god">添加神仙</el-button> -->
+                        <el-button type="warning" id="rmc" @click="back">返回上一页</el-button>
+                    </div>
+                </div>
+            </el-header>
+            <el-main class="main-area" style="flex-direction: column;">
+                <el-card class="box-card-e">
+                    <span>{{house}}书院的同学，您好</span>
+                    <br/>
+                    <span>您的学号为：{{uid}}</span>
+                    <br />
+                    <span>您的座位在 {{info.f}}层 {{info.y}}排,{{info.x}}列</span>
+                </el-card>
+                <el-card class="box-card-e" style="margin-top:10px;">
+                </el-card>
+                <el-card class="box-card-e" style="margin-top:10px;">
+                </el-card>
+            </el-main>
+        </el-container>
+    </div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="data.js"></script>
+
+<script>
+    var vue = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                uid: "",
+                house: "",
+                info: {},
+            }
+        },
+        methods: {
+            back() {
+                history.back(-1);
+            },
+            onload() {
+                if (localStorage.getItem('uid')) {
+                    this.uid = localStorage.getItem('uid');
+                    this.house = Hmap[this.uid[3]];
+                    this.info = idlist[this.uid];
+                } else
+                    history.back(-1);
+            }
+        }
+    })
+    window.onload = vue.onload;
+</script>
+
+</html>
